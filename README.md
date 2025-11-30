@@ -30,28 +30,32 @@ Repository này chứa mã nguồn MATLAB dùng để chạy và so sánh độ 
 - `DE/current-to-best/1` : Kết hợp khai thác và thăm dò hướng tới best.
 - `jDE` : Tự điều chỉnh (self-adaptive) các tham số F và Cr trong quá trình tiến hóa.
 
-## Chạy nhanh (PowerShell / CMD)
+## Hướng dẫn chạy (PowerShell / CMD)
 
 1. Đảm bảo MATLAB đã cài (đã phát hiện `R2025b`).
-1. Chạy script so sánh:
+1. Chạy script so sánh chính:
 
 ```powershell
-& "C:\Program Files\MATLAB\R2025b\bin\matlab.exe" -batch "addpath('matlab/src'); run('matlab/src/main_compare.m')"
+Push-Location "C:\Users\An\Documents\IT4593-KTTT\project"
+& "C:\Program Files\MATLAB\R2025b\bin\matlab.exe" -batch "addpath('src'); run('src/main_compare.m')"
+Pop-Location
 ```
 
-1. Chạy ví dụ đơn giản:
+1. Tùy chọn: thêm MATLAB vào PATH để gõ ngắn gọn hơn:
 
 ```powershell
-& "C:\Program Files\MATLAB\R2025b\bin\matlab.exe" -batch "addpath('matlab/src'); run('matlab/src/main.m')"
+$matlabBin = "C:\Program Files\MATLAB\R2025b\bin"
+[Environment]::SetEnvironmentVariable("Path", $Env:Path + ";" + $matlabBin, "User")
+$Env:Path = $Env:Path + ";" + $matlabBin
+matlab -batch "addpath('src'); run('src/main_compare.m')"
 ```
 
-1. Chạy kiểm thử:
+1. Chạy qua MATLAB GUI: mở MATLAB, đặt Current Folder tới thư mục dự án, rồi chạy:
 
-```powershell
-& "C:\Program Files\MATLAB\R2025b\bin\matlab.exe" -batch "addpath('matlab/src'); run('matlab/tests/test_main.m')"
+```matlab
+addpath('src');
+run('src/main_compare.m')
 ```
-
-Nếu muốn gọi ngắn gọn `matlab -batch ...` thì thêm đường dẫn `bin` vào PATH người dùng.
 
 ## Kết quả mẫu (đã quan sát)
 
